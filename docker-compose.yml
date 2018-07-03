@@ -1,0 +1,14 @@
+version: "3"
+services:
+  db:
+    build:
+        context: .
+    image: postgres_db
+    ports:
+      - 5432:5432
+    container_name: postgresDB
+    volumes:
+      - data-postgresql:/var/lib/postgresql/data
+
+volumes:
+  data-postgresql:

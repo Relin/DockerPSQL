@@ -1,0 +1,18 @@
+docker build -t customdb .
+
+
+# SHARING VOLUME ON WINDOWS HOST IS SHIT => docker run --name mydb -v //D/Docker/psql/data_directory:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=pololopo -d customdb
+# docker run --name mydb -p 5432:5432 -e POSTGRES_PASSWORD=pololopo -d customdb
+
+
+docker volume create --name data-postgresql --driver local
+docker run --name mydb -v data-postgresql:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_PASSWORD=pololopo -d customdb
+
+
+//directement acceder au container
+docker exec -ti mydb bash
+
+//pour récupere l'ip 
+docker inspect mydb | Select-String IPAddress
+
+	
